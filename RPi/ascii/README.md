@@ -1,11 +1,5 @@
 # pi-rs485-driver-modbus-ascii
 
-Driver for innovert 3-phase engine controller
-
-Tested on [ISD222M21B](https://www.prst.ru/preobrazovatel/innovert/)
-
-Special build for Raspberry Pi, using onboard serial and software RTS flow-control
-
 Install
 -----------------
 ### Raspberry-Pi
@@ -37,11 +31,6 @@ Usage samples
 # Use another uart
 ./driver -e -s /dev/ttyAMA0
 ```
-
-Sample device
------------------
-
-![my device](https://github.com/ramzes642/pi-rs485-driver-modbus-ascii/raw/master/sample-device.JPG)
 
 Wiring
 -----------------

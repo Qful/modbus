@@ -1,35 +1,23 @@
-#ModBUS Communication between Schneider EM6436 Meter and Raspberry Pi
-#First beta version.
-#The meter is set with the following settings
-#Communication : (RS484 to RS232 to USB) - BaudRate = 19200, Parity = N, Stopbits = 1, Device ID=1 (Hardcode in meter)
-#Electical Settings: APri:50, Asec: 5, VPri: 415, Vsec:415, SYS: Star
-#To use the meter in Single Phase mode, Some address has to be commented.
-#This program was tested on RPi3 running Rasbian Jessie Pixel from Noobs V2
-#Debian Kernel = Linux raspberrypi 4.4.38-v7+ #938 SMP Thu Dec 15 15:22:21 GMT 2016 armv7l GNU/Linux
+#ModBUS Communication between equip and Raspberry Pi
+#Communication : (RS485 to RS232 to USB) - BaudRate = 19200, Parity = N, Stopbits = 1, Device ID=1
 
-#Additional Packages: pymodbus,pyserial. (available in pyPi repo)
-#V1.0b Feb2,2017
-#Code by Sai Shibu (AWNA/058/15)
-#Copyrights AmritaWNA Smartgrid Tag
 
 import time
-import pymodbus 
+
 import serial
+
+import pymodbus 
 from pymodbus.pdu import ModbusRequest
 from pymodbus.client.sync import ModbusSerialClient as ModbusClient
 from pymodbus.transaction import ModbusRtuFramer
-
+from pymodbus.constants import Endian
+from pymodbus.payload import BinaryPayloadDecoder as decode
+from pymodbus.payload import BinaryPayloadBuilder as builder
 #Diagnosis messages not requires.
-
 #from pymodbus.diag_message import *
 #from pymodbus.file_message import *
 #from pymodbus.other_message import *
 #from pymodbus.mei_message import *
-
-#Endian library for decoding HEX to Float
-from pymodbus.constants import Endian
-from pymodbus.payload import BinaryPayloadDecoder as decode
-from pymodbus.payload import BinaryPayloadBuilder as builder
 
 
 #logging not required. 
@@ -38,7 +26,6 @@ from pymodbus.payload import BinaryPayloadBuilder as builder
 #log=logging.getLogger()
 #log.setLevel(logging.DEBUG)
 
-#EM6436 is defined as client
 client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=0.05) 
 client.connect()
 
