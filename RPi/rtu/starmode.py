@@ -26,7 +26,7 @@ from pymodbus.payload import BinaryPayloadBuilder as builder
 #log=logging.getLogger()
 #log.setLevel(logging.DEBUG)
 
-client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=0.05) 
+client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=0. 5) 
 client.connect()
 
 while 1:
@@ -95,7 +95,6 @@ while 1:
 
 ######################################################
 	#Power Values 
-	#NOTE: EM6436 does not give VAR Values!!!
 
 	W=client.read_holding_registers(3902,2,unit=1) 
 	W1=client.read_holding_registers(3918,2,unit=1)  

@@ -7,46 +7,39 @@
 #include <fcntl.h>      // File control definitions
 #include <termios.h>    // POSIX terminal control definitions
 #include <sys/types.h>
+#include <time.h>
+#include <stdarg.h>
+#include <pthread.h>
 
 
 #ifdef RPI
 #include <wiringPi.h>
 #endif
 
-#include <time.h>
-#include <stdarg.h>
-#include <pthread.h>
 
 
 // defines RTS pin number (wiring gpio 0, pin 17 PHY)
 #define RTS 0
-
-
-#define SERIAL_SPD B9600
-
+#define SERIAL_SPD B4800
 // Time in msec to transfer 1 byte
 // 173 - for 57600 (10000000/57600)
 // 1040 - for 9600
-// etc
-#define SERIAL_SPD_1BYTE 1040
-
-
-char *serial_port = "/dev/ttyS0";
-int fd = 0;     // File descriptor
-
-
+// 2080 - for 4800
+#define SERIAL_SPD_1BYTE 2080
 
 // Open usb-serial port for reading & writing
+
+char *serial_port = "/dev/ttyUSB0";
+int fd = 0;     // File descriptor
+
 int open_port(void) {
 
     int fd;    // File descriptor for the port
     fd = open(serial_port, O_RDWR | O_NOCTTY | O_SYNC);
-
     if (fd == -1) {
         fprintf(stderr, "open_port: Unable to open %s: %s\n", serial_port, strerror(errno));
         exit(EXIT_FAILURE);
     }
-
     return fd;
 }
 
@@ -62,7 +55,8 @@ unsigned char hexval(unsigned char c)
     else abort();
 }
 
-void say(char *_msg, ...) {
+void say(char *_msg, ...) 
+{
     struct timespec gettime_now;
     long int start_time;
     char *msg = malloc(strlen(_msg)*2);
@@ -71,8 +65,6 @@ void say(char *_msg, ...) {
     va_start(args, _msg);
     int wb = vsprintf(msg, _msg, args);
     va_end(args);
-
-
     unsigned char crc = 0xff;
     for (int i=1; i < wb - 1;i += 2) {
         int d = (hexval(msg[i]) << 4) + hexval(msg[i+1]);
@@ -105,7 +97,8 @@ void say(char *_msg, ...) {
 #define ST_PID 2
 #define ST_RECV 3
 
-void ProcessMessages() {
+void ProcessMessages() 
+{
     char buf[512];
     int buf_pos = 0;
 
@@ -125,12 +118,9 @@ void ProcessMessages() {
     printf("Read response\r\n");
     int timeout = 100;
     while (--timeout > 0) {
-
         ssize_t inp_size = read(fd, &buf, 512);
         if (inp_size > 0) {
             buf[inp_size] = 0;
-
-
             printf("\r\ninp size: %d ", inp_size, buf[0]);
             for (int i=0;i<inp_size;i++) {
                 printf("[%d]", buf[i]);
@@ -138,8 +128,6 @@ void ProcessMessages() {
         }
 
         usleep(100 * 100);
-
-
     }
 }
 

@@ -1,4 +1,5 @@
-# pi-rs485-driver-modbus-ascii
+# modbus ascii
+## Raspberry Pi rs485 driver
 
 Install
 -----------------
