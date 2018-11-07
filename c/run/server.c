@@ -1,13 +1,6 @@
-/*
- * Copyright © 2008-2014 Stéphane Raimbault <stephane.raimbault@gmail.com>
- *
- * SPDX-License-Identifier: BSD-3-Clause
- */
 
 #include <stdio.h>
-#ifndef _MSC_VER
-#include <unistd.h>
-#endif
+
 #include <string.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -15,6 +8,10 @@
 
 #if defined(_WIN32)
 #define close closesocket
+#endif
+
+#ifndef _MSC_VER
+#include <unistd.h>
 #endif
 
 int main(int argc, char *argv[])
@@ -25,7 +22,7 @@ int main(int argc, char *argv[])
     int rc;
     int use_backend;
 
-    ctx = modbus_new_rtu("/dev/ttyUSB0", 115200, 'N', 8, 1);
+    ctx = modbus_new_rtu("/dev/ttyUSB0", 4800, 'N', 8, 1);
     modbus_set_slave(ctx, 1);
     modbus_connect(ctx);
 
@@ -38,20 +35,21 @@ int main(int argc, char *argv[])
         return -1;
     }
     printf("ready to echo \n\n");
-    for(;;) {
+    for(;;) 
+	{
         uint8_t query[MODBUS_TCP_MAX_ADU_LENGTH];
-
         rc = modbus_receive(ctx, query);
         if (rc > 0) {
             modbus_reply(ctx, query, rc, mb_mapping);
-        } else if (rc  == -1) {
+        }
+		else if(rc  == -1){
             /* Connection closed by the client or error */
             break;
         }
     }
     printf("Quit the loop: %s\n", modbus_strerror(errno));
     modbus_mapping_free(mb_mapping);
-    if (s != -1) {
+    if(s != -1) {
         close(s);
     }
     /* For RTU, skipped by TCP (no TCP connect) */

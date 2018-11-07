@@ -1,20 +1,14 @@
-/*
- * Copyright © 2008-2014 Stéphane Raimbault <stephane.raimbault@gmail.com>
- *
- * SPDX-License-Identifier: BSD-3-Clause
- */
-
 #include <stdio.h>
-#ifndef _MSC_VER
-#include <unistd.h>
-#include <sys/time.h>
-#endif
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
 #include <errno.h>
-
 #include <modbus.h>
+
+#ifndef _MSC_VER
+#include <unistd.h>
+#include <sys/time.h>
+#endif
 
 #define G_MSEC_PER_SEC 1000
 
@@ -45,7 +39,7 @@ int main(int argc, char *argv[])
     uint32_t rate;
     int rc;
     int n_loop = 100;
-    ctx = modbus_new_rtu("/dev/ttyUSB0", 115200, 'N', 8, 1);
+    ctx = modbus_new_rtu("/dev/ttyUSB0", 4800, 'N', 8, 1);
     modbus_set_slave(ctx, 1);
    
     if (modbus_connect(ctx) == -1) {
