@@ -26,7 +26,7 @@ from pymodbus.payload import BinaryPayloadBuilder as builder
 #log=logging.getLogger()
 #log.setLevel(logging.DEBUG)
 
-client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=0. 5) 
+client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=1,baudrate=4800) 
 client.connect()
 
 while 1:

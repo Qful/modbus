@@ -20,16 +20,29 @@ from pymodbus.payload import BinaryPayloadBuilder as builder
 #Endian library for decoding HEX to Float
 
 #logging not required. 
-#import logging
-#logging.basicConfig()
-#log=logging.getLogger()
-#log.setLevel(logging.DEBUG)
+import logging
+logging.basicConfig()
+log=logging.getLogger()
+log.setLevel(logging.DEBUG)
+UNIT = 0x1
 
-client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=0.5) 
-client.connect()
-
-while 1:
+try:
+	client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=1,baudrate=4800) 
+	client.connect()
+except:
+	log.info("connect serial error")
+	print "connect serial error" 
+	time.sleep(1)
 	
+while 1:
+	rq = client.write_register(0, 333, unit=UNIT)  # 06H写保持寄存器(起始寄存器号，值，从机号)->返回写的数值
+	print(rq)  # 写入的数值
+	print(rq.function_code)  # 功能码
+	rr = client.read_holding_registers(0, 8, unit=UNIT)  # 03H读保持寄存器(起始寄存器号，数量，从机号)->返回成功与否
+    print(rr)
+    print(rr.registers)  # 读出的数据列表
+    assert (rq.function_code < 0x80)  # test that we are not an error
+    assert (rr.registers[1] == 666)  # test the expected value
 ####################################################
 #Read Whole Block (Bugs while decoding with Endian!!!)
 #	T_RMS=client.read_holding_registers(0xbb8,20,unit=1)
