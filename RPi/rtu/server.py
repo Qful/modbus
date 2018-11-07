@@ -1,7 +1,13 @@
 # coding=UTF-8
+
+from __future__ import division
+
+#import pylibmodbus
+
 import time
 import serial
-import pymodbus 
+import pymodbus
+import unittest
 from pymodbus.pdu import ModbusRequest
 from pymodbus.client.sync import ModbusSerialClient as ModbusClient
 from pymodbus.transaction import ModbusRtuFramer
@@ -17,7 +23,6 @@ from pymodbus.payload import BinaryPayloadBuilder as builder
 #from pymodbus.mei_message import *
 
 #Endian library for decoding HEX to Float
-
 #logging not required. 
 #import logging
 #logging.basicConfig()
@@ -40,6 +45,12 @@ while 1:
 	rq = client.write_register(0,31,unit=ID)  # 06H写保持寄存器(起始寄存器号，值，从机号)->返回写的数值
 	print(rq)  # 写入的数值
 	print(rq.function_code)  # 功能码
+	time.sleep(1)
+	write_data = [23] * 6
+	rq = client.write_registers(0, write_data)
+	#print(rq)  # 写入的数值
+	#print(rq.function_code)  # 功能码
+	time.sleep(1)
 	timestamp = time.strftime('%H:%M:%S %d-%m-%Y')
 	print timestamp
     #assert (rq.function_code < 0x80)  # test that we are not an error
