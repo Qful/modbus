@@ -46,7 +46,7 @@ def test_write_and_read_registers(self):
 
 
 try:
-	client = ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=1,baudrate=4800) 
+	client = pylibmodbus.ModbusTcp("127.0.0.1", 1502)ModbusClient(method ='rtu',port='/dev/ttyUSB0',timeout=1,baudrate=4800) 
 	client.connect()
 except:
 	#log.info("connect serial error")
