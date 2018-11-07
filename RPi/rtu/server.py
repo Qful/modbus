@@ -51,6 +51,9 @@ while 1:
 	#print(rq)  # 写入的数值
 	#print(rq.function_code)  # 功能码
 	time.sleep(1)
+	read_data = client.read_registers(0, 8)
+	print(read_data)
+	print(read_data.registers)  # 读出的数据列表
 	timestamp = time.strftime('%H:%M:%S %d-%m-%Y')
 	print timestamp
     #assert (rq.function_code < 0x80)  # test that we are not an error
