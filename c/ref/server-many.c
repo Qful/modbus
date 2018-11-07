@@ -1,8 +1,3 @@
-/*
- * Copyright © 2008-2014 Stéphane Raimbault <stephane.raimbault@gmail.com>
- *
- * SPDX-License-Identifier: BSD-3-Clause
- */
 
 #include <stdio.h>
 #include <unistd.h>

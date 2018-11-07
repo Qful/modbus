@@ -42,9 +42,9 @@ int main(int argc, char *argv[])
     ctx = modbus_new_rtu("/dev/ttyUSB0", 4800, 'N', 8, 1);
     modbus_set_slave(ctx, 1);
    
-    if (modbus_connect(ctx) == -1) {
-        fprintf(stderr, "Connection failed: %s\n",
-                modbus_strerror(errno));
+    if (modbus_connect(ctx) == -1) 
+	{
+        fprintf(stderr, "Connection failed: %s\n", modbus_strerror(errno));
         modbus_free(ctx);
         return -1;
     }
@@ -58,7 +58,9 @@ int main(int argc, char *argv[])
     memset(tab_reg, 0, MODBUS_MAX_READ_REGISTERS * sizeof(uint16_t));
 
     nb_points = MODBUS_MAX_READ_BITS;
-    for(;;) {     
+	printf("Qitas RTU start\n\n");
+    for(;;) 
+	{     
         start = gettime_ms();
         printf("RTU READ BITS\n\n");
         rc = modbus_read_bits(ctx, 0, nb_points, tab_bit);

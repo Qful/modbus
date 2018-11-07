@@ -25,16 +25,15 @@ int main(int argc, char *argv[])
     ctx = modbus_new_rtu("/dev/ttyUSB0", 4800, 'N', 8, 1);
     modbus_set_slave(ctx, 1);
     modbus_connect(ctx);
-
-    mb_mapping = modbus_mapping_new(MODBUS_MAX_READ_BITS, 0,
-                                    MODBUS_MAX_READ_REGISTERS, 0);
-    if (mb_mapping == NULL) {
-        fprintf(stderr, "Failed to allocate the mapping: %s\n",
-                modbus_strerror(errno));
+    mb_mapping = modbus_mapping_new(MODBUS_MAX_READ_BITS, 0, MODBUS_MAX_READ_REGISTERS, 0);
+	
+    if (mb_mapping == NULL) 
+	{
+        fprintf(stderr, "Failed to allocate the mapping: %s\n", modbus_strerror(errno));
         modbus_free(ctx);
         return -1;
     }
-    printf("ready to echo \n\n");
+    printf("qitas ready to echo \n\n");
     for(;;) 
 	{
         uint8_t query[MODBUS_TCP_MAX_ADU_LENGTH];
@@ -43,7 +42,7 @@ int main(int argc, char *argv[])
             modbus_reply(ctx, query, rc, mb_mapping);
         }
 		else if(rc  == -1){
-            /* Connection closed by the client or error */
+			printf("modbus receive error\n\n");
             break;
         }
     }
