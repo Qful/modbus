@@ -8,13 +8,25 @@ modbus协议相关，用于控制设备和获取数据
 
 ## 组成
 
+#### qitas
+
+包括文档
+
 #### RPi
 
-有线通信方式，包括RS232和RS485，基于modbus RTU 和 modbus ascii
+在树莓派上的实现，包括RS485，基于modbus RTU 和 modbus ascii
 
 #### py
 
-#### lib
+包括py的实现方式和相关代码
+
+#### c
+
+包括c的实现方式和相关代码
+
+#### tools
+
+windows下modbus的调试工具
 
 ---
 
