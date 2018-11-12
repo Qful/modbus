@@ -71,7 +71,14 @@ def sub_port(client, userdata, msg):
     client.loop_forever()
 
 while True:
-	ret = get_GST5000(rs485,DEVID,0,10)
+	'''
+	cnt=0
+	while (cnt<10):
+		ret = get_GST5000(rs485,DEVID,cnt,100)
+		set_GST5000(rs485,DEVID,cnt,ret[cnt]+1)
+		cnt=cnt+1
+	'''
+	ret = get_GST5000(rs485,DEVID,0,100)
 	set_GST5000(rs485,DEVID,0,ret[0]+1)
 	#print(rq.function_code)  # 功能码
 	#time.sleep(1)
@@ -82,9 +89,10 @@ while True:
 	print("SID:"+SID)
 	print(jsondata)
 	client_id = time.strftime('%Y%m%d%H%M%S',time.localtime(time.time()))
-	publish.single(SID, jsondata, qos = 1,hostname=HOST,port=PORT, client_id=client_id,auth = {'username':"admin", 'password':"public"})
+	print(client_id)
+	#publish.single(SID, jsondata, qos = 1,hostname=HOST,port=PORT, client_id=client_id,auth = {'username':"admin", 'password':"public"})
 	#print("qitas send")
-	time.sleep(5)
+	#time.sleep(5)
 	
 client.close()
 		
