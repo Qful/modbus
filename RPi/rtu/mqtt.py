@@ -49,7 +49,7 @@ def on_message(client, userdata, msg):
 
 def get_GST5000(client,ID,reg,len):
 	A = client.read_holding_registers(reg,len,unit=ID) #03H读保持寄存器(起始寄存器号，数量，从机号)->返回成功与否
-	print(A.registers)  # 读出的数据列表
+	#print(A.registers)  # 读出的数据列表
 	return A.registers
 	
 def set_GST5000(client,ID,reg,value):
@@ -71,15 +71,24 @@ def sub_port(client, userdata, msg):
     client.loop_forever()
 
 while True:
-	'''
+	
 	cnt=0
 	while (cnt<10):
-		ret = get_GST5000(rs485,DEVID,cnt,100)
-		set_GST5000(rs485,DEVID,cnt,ret[cnt]+1)
+		ret = get_GST5000(rs485,DEVID,cnt*10,10)
+		#set_GST5000(rs485,DEVID,cnt*10,ret[cnt]+1)
 		cnt=cnt+1
+		index=0
+		while (index<10):
+			if ret[index] > 0:
+				print("result: at %d with %d " %((index+cnt*10),ret[index]))			
+			index=index+1
+		index=0
 	'''
 	ret = get_GST5000(rs485,DEVID,0,100)
+	
+	
 	set_GST5000(rs485,DEVID,0,ret[0]+1)
+	'''
 	#print(rq.function_code)  # 功能码
 	#time.sleep(1)
 	#write_data = [23] * 6
