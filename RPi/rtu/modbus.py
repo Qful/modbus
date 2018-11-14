@@ -80,7 +80,7 @@ while True:
 		index=0
 		while (index<10):
 			if ret[index] > 0:
-				print("RS485: Addr %d Val %d " %((index+cnt*9),ret[index]))			
+				print("result: at %d with %d " %((index+cnt*10),ret[index]))			
 			index=index+1
 		index=0
 	'''
