@@ -8,6 +8,10 @@ modbus协议通信，用于控制modbus设备和获取modbus数据
 
 ## [组成](qitas/)
 
+#### [文档](docs/)
+
+包括协议相关文档
+
 #### [mcu](mcu/)
 
 包括mcu实现相关代码
@@ -34,7 +38,7 @@ modbus协议通信，用于控制modbus设备和获取modbus数据
 
 #### [tools](tools/)
 
-win系统下modbus的软件调试工具
+上位机调试modbus的软件工具
 
 
 ---
