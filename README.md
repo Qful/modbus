@@ -40,9 +40,6 @@ modbus协议通信，用于控制modbus设备和获取modbus数据
 
 包括py的实现方式和相关代码
 
-#### [tools](tools/)
-
-上位机调试modbus的软件工具
 
 
 ---
