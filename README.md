@@ -1,43 +1,45 @@
-﻿# [modbus](https://github.com/Qitas/modbus.git) 
+﻿# [modbus](https://github.com/qitas/modbus) 
 
-## 简介
+#### qitas@qitas.cn
 
-modbus协议相关，用于控制设备和获取数据
+## [描述](https://github.com/qitas/modbus/wiki) 
 
----
+modbus协议通信，用于控制modbus设备和获取modbus数据
 
-## 组成
+## [组成](qitas/)
 
-#### qitas
+#### [mcu](mcu/)
 
-包括文档
+包括mcu实现相关代码
 
-#### RPi
+#### [RPi资源](RPi/)
 
-在树莓派上的实现，包括RS485，基于modbus RTU 和 modbus ascii
+在树莓派上实现和相关代码
 
-#### py
-
-包括py的实现方式和相关代码
-
-#### c
+#### [c资源](c/)
 
 包括c的实现方式和相关代码
 
-#### tools
+#### [go资源](go/)
 
-windows下modbus的调试工具
+包括go的实现方式和相关代码
 
-#### modbus-tk
+#### [lua资源](lua/)
 
-modbus testkit
+包括lua的实现方式和相关代码
 
-#### uCOSIII
+#### [Python资源](python/)
 
-uCOSIII系统的modbus通信
+包括py的实现方式和相关代码
+
+#### [tools](tools/)
+
+win系统下modbus的软件调试工具
+
 
 ---
 
-## 为锻造最美之器
+### 锻造最美之器
 
 [![sites](qitas/qitas.png)](http://www.qitas.cn)
+
