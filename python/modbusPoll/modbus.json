@@ -1,0 +1,116 @@
+[
+    {
+        "baudrate": 38400,
+        "bytesize": 8,
+        "channels": [
+            {
+                "channel": 1,
+                "type": "supply"
+            },
+            {
+                "channel": 2,
+                "type": "return"
+            },
+            {
+                "channel": 3,
+                "type": "supply"
+            },
+            {
+                "channel": 4,
+                "type": "return"
+            },
+            {
+                "channel": 9,
+                "type": "ssdg"
+            },
+            {
+                "channel": 11,
+                "type": "ssdg"
+            }
+        ],
+        "comport": "COM4",
+        "parity": "N",
+        "registers": [
+            {
+                "convert": 3.316,
+                "factor": 28,
+                "float": 246,
+                "name": "Mass Flow Rate",
+                "offset": 18,
+                "only": "",
+                "register": 1,
+                "type": "float",
+                "units": "kg/hr"
+            },
+            {
+                "convert": 1,
+                "factor": 29,
+                "float": 248,
+                "name": "Density",
+                "offset": 19,
+                "only": "",
+                "register": 2,
+                "type": "float",
+                "units": "kg/m3"
+            },
+            {
+                "convert": 1,
+                "factor": 31,
+                "float": 250,
+                "name": "Temperature",
+                "offset": 21,
+                "only": "",
+                "register": 3,
+                "type": "float",
+                "units": "F"
+            },
+            {
+                "convert": 3.316,
+                "factor": 34,
+                "float": 258,
+                "name": "Mass Total",
+                "offset": 24,
+                "only": "",
+                "register": 7,
+                "type": "float",
+                "units": "kg"
+            },
+            {
+                "convert": 3.316,
+                "factor": 36,
+                "float": 262,
+                "name": "Mass Inventory",
+                "offset": 26,
+                "only": "",
+                "register": 9,
+                "type": "float",
+                "units": "kg"
+            },
+            {
+                "convert": 3.316,
+                "factor": 36,
+                "float": 4437,
+                "name": "Differential Mass Flow",
+                "offset": 26,
+                "only": "return",
+                "register": 9,
+                "type": "float",
+                "units": "kg"
+            },
+            {
+                "convert": 3.316,
+                "factor": 37,
+                "float": 4439,
+                "name": "Differential Mass Total",
+                "offset": 27,
+                "only": "return",
+                "register": 10,
+                "type": "float",
+                "units": "kg"
+            }
+        ],
+        "savetime": 12,
+        "stopbits": 1,
+        "timeout": 0.5
+    }
+]
