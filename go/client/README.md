@@ -1,6 +1,3 @@
-go modbus [![Build Status](https://travis-ci.org/goburrow/modbus.svg?branch=master)](https://travis-ci.org/goburrow/modbus) [![GoDoc](https://godoc.org/github.com/goburrow/modbus?status.svg)](https://godoc.org/github.com/goburrow/modbus)
-=========
-Fault-tolerant, fail-fast implementation of Modbus protocol in Go.
 
 Supported functions
 -------------------
@@ -72,7 +69,3 @@ defer handler.Close()
 client := modbus.NewClient(handler)
 results, err := client.ReadDiscreteInputs(15, 2)
 ```
-
-References
-----------
--   [Modbus Specifications and Implementation Guides](http://www.modbus.org/specs.php)
